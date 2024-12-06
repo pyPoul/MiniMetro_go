@@ -2,7 +2,6 @@ package internal
 
 import (
 	et "github.com/hajimehoshi/ebiten/v2"
-	etu "github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 type Game struct {

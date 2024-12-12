@@ -2,8 +2,6 @@ package internal
 
 import (
 	et "github.com/hajimehoshi/ebiten/v2"
-	"image"
-	"os"
 )
 
 type Station struct {
@@ -22,22 +20,11 @@ func (s *Station) Image() *et.Image {
 		return s.image
 	}
 
-	name, err := s.shape.ToString()
+	var err error
+	s.image, err = ObjToImg(s)
 	if err != nil {
 		panic(err)
 	}
-
-	f, err := os.Open("assets/stations/" + name + ".png")
-	if err != nil {
-		panic(err)
-	}
-
-	img, _, err := image.Decode(f)
-	if err != nil {
-		panic(err)
-	}
-
-	s.image = et.NewImageFromImage(img)
 
 	return s.image
 }

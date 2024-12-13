@@ -1,6 +1,9 @@
 package internal
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 type Shape int
 
@@ -44,7 +47,24 @@ func (s *Shape) ToString() (string, error) {
 	}
 }
 
+func NewRandomShape() *Shape {
+	s := Shape(rand.Intn(10))
+	return &s
+}
+
 type Vec2 struct {
 	X int
-	Y int
+	y int
+}
+
+func NewVec2(x, y int) *Vec2 {
+	return &Vec2{X: x, y: y}
+}
+
+func NewRandomVec2(maxX, maxY int) *Vec2 {
+
+	return &Vec2{
+		X: rand.Intn(maxX),
+		y: rand.Intn(maxY),
+	}
 }

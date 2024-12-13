@@ -24,3 +24,7 @@ go.work.sum
 
 # Tests
 *_test.go
+
+# Scripts
+*.sh
+*.ps1

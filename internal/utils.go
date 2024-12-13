@@ -3,8 +3,7 @@ package internal
 import (
 	"fmt"
 	et "github.com/hajimehoshi/ebiten/v2"
-	"image"
-	"os"
+	etil "github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 func ObjToImg(obj interface{}) (*et.Image, error) {
@@ -31,15 +30,11 @@ func ObjToImg(obj interface{}) (*et.Image, error) {
 		return nil, err
 	}
 
-	f, err := os.Open(fmt.Sprintf("assets/%s/%s.png", typeObj, name))
+	var img *et.Image
+	img, _, err = etil.NewImageFromFile(fmt.Sprintf("assets/%s/%s.png", typeObj, name))
 	if err != nil {
 		return nil, err
 	}
 
-	img, _, err := image.Decode(f)
-	if err != nil {
-		return nil, err
-	}
-
-	return et.NewImageFromImage(img), nil
+	return img, nil
 }
